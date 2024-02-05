@@ -1,0 +1,179 @@
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: #100f14;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: white;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.password-settings-container,
+.generated-password-container {
+  background-color: #24232c;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  width: 470px;
+}
+.generated-password-container-top {
+  width: 500px;
+  padding: 15px;
+}
+.generated-password-box {
+  padding: 10px;
+  margin-top: 10px;
+  font-family: 'Courier New', monospace;
+  color: white;
+  position: relative;
+  font-weight: 600;
+  background: #24232c;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.strength-indicator-wrap {
+  display: flex;
+  justify-content: space-between;
+  background-color: #18171f;
+  margin-bottom: 20px;
+  padding:15px 10px;
+  align-items: center;
+}
+
+.strength-indicator-wrap span {
+  color: #989898;
+  font-weight: 600;
+}
+
+.password-settings-container label {
+  margin-bottom: 5px;
+  color: white;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Checkbox styles */
+.input-container .MuiCheckbox-root,
+.input-container .MuiCheckbox-colorSecondary.Mui-checked {
+  color: #a7fdb2;
+}
+
+/* Ensure checkbox background turns green when checked */
+.input-container .MuiCheckbox-colorSecondary.Mui-checked .MuiIconButton-root {
+  background-color: #4caf50;
+}
+
+/* Generate button styles */
+.password-settings-container .MuiButton-root {
+  background-color: #24232c;
+    padding: 15px 36px;
+    font-size: 18px;
+    font-weight: 600;
+    border: 1px solid #a7fdb2;
+    box-shadow: none;
+    width: 100%;
+}
+
+/* Slider styles */
+input[type="range"] {
+  width: 85%;
+  margin: 10px 0;
+}
+
+/* Strength indicator styles */
+.strength-indicator {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.strength-block {
+  height: 25px;
+  width: 10px;
+  background-color: #ddd;
+  margin-right: 5px;
+}
+
+.strength-indicator[data-strength='1'] .strength-block {
+  background-color: #ff5252; /* Red color for weak */
+}
+
+.strength-indicator[data-strength='2'] .strength-block {
+  background-color: #ffa500; /* Orange color for strong */
+}
+
+.strength-indicator[data-strength='3'] .strength-block {
+  background-color: #4caf50; /* Green color for very strong */
+}
+
+.notification-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #4caf50; /* Green color */
+  color: #fff; /* White text color */
+  padding: 15px;
+  border-radius: 5px;
+  z-index: 1000; /* Ensure it appears above other elements */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.notification {
+  font-size: 16px;
+}
+
+.MuiTypography-h6 {
+  text-align: center;
+  font-weight: 700;
+  padding-bottom: 20px;
+}
+.generated-password-box {
+  font-size: 24px;
+  font-weight: 900;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+.MuiIconButton-colorPrimary {
+  color: #ffffff !important;
+}
+.MuiTypography-h4 {
+  font-size: 18px;
+  font-weight: 600;
+}
+.password-range {
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.password-length {
+  font-size: 26px;
+  font-weight: 600;
+  color: #0175ff;
+}
+.strength-label {
+  margin-right: 10px;
+}
