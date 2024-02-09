@@ -7,7 +7,7 @@ import {
   IconButton,
 } from '@material-ui/core';
 import { FileCopyOutlined } from '@material-ui/icons';
-import './App.css';
+import './App.css'; // Ensure that you have this file in your project
 
 const generatePassword = (
   length,
@@ -63,7 +63,7 @@ const StrengthIndicator = ({ strength }) => {
 
   return (
     <div className="strength-indicator" data-strength={strength} style={{ color: indicatorColor }}>
-        <div className="strength-label">{strengthLabel}</div>
+      <div className="strength-label">{strengthLabel}</div>
       {Array.from({ length: 4 }).map((_, index) => (
         <div key={index} className={`strength-block ${index < strength ? 'filled' : ''}`} />
       ))}
