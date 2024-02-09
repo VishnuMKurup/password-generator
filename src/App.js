@@ -37,39 +37,70 @@ const generatePassword = (
 };
 
 const calculatePasswordStrength = (password) => {
-  if (password.length < 6) {
-    return 1; // Weak
-  } else if (password.length >= 6 && password.length <= 12) {
-    return 2; // Medium
-  } else {
-    return 3; // Strong
+  const length = password.length;
+  let strength = 0;
+
+  // Check if password contains lowercase letters
+  const hasLowercase = /[a-z]/.test(password);
+  // Check if password contains uppercase letters
+  const hasUppercase = /[A-Z]/.test(password);
+  // Check if password contains numbers
+  const hasNumbers = /[0-9]/.test(password);
+  // Check if password contains symbols
+  const hasSymbols = /[!@#$%^&*()\-_=+{};:,<.>]/.test(password);
+
+  // Add strength points based on presence of different character types
+  if (length >= 8 && length <= 12) {
+    strength += 1; // Increment strength for medium length
+  } else if (length > 12) {
+    strength += 2; // Increment strength for long length
   }
+
+  if (hasLowercase) strength += 1;
+  if (hasUppercase) strength += 1;
+  if (hasNumbers) strength += 1;
+  if (hasSymbols) strength += 1;
+
+  return strength;
 };
 
-const StrengthIndicator = ({ strength }) => {
-  let indicatorColor;
-  let strengthLabel;
 
+const StrengthIndicator = ({ strength }) => {
+  let strengthLabel;
+  let indicatorColor;
+  let blockCount = 0; // Initialize block count
+
+  // Determine strength label and indicator color based on strength level
   if (strength === 1) {
     indicatorColor = '#ff5252'; // Red color for weak
     strengthLabel = 'Weak';
+    blockCount = 2; // Weak: Highlight first 2 blocks
   } else if (strength === 2) {
     indicatorColor = '#ffa500'; // Orange color for medium
     strengthLabel = 'Medium';
+    blockCount = 3; // Medium: Highlight first 3 blocks
   } else {
-    strengthLabel = 'Strong';
     indicatorColor = '#4caf50'; // Green color for strong
+    strengthLabel = 'Strong';
+    blockCount = 4; // Strong: Highlight all 4 blocks
   }
 
+  // Generate an array of spans with appropriate styling
+  const blocks = Array.from({ length: 4 }).map((_, index) => (
+    <span
+      key={index}
+      style={{ backgroundColor: index < blockCount ? indicatorColor : '#fff' }}
+    ></span>
+  ));
+
   return (
-    <div className="strength-indicator" data-strength={strength} style={{ color: indicatorColor }}>
+    <div className="strength-icon ml-1 flex items-center place-content-center flex-nowrap group">
+      {blocks}
       <div className="strength-label">{strengthLabel}</div>
-      {Array.from({ length: 4 }).map((_, index) => (
-        <div key={index} className={`strength-block ${index < strength ? 'filled' : ''}`} />
-      ))}
     </div>
   );
 };
+
 
 const Notification = ({ message, onClose }) => {
   useEffect(() => {
@@ -202,10 +233,12 @@ function App() {
             label="Symbols"
           />
         </div>
-        <div className="strength-indicator-wrap">
-          <span>STRENGTH</span>
-          <StrengthIndicator strength={passwordStrength} />
-        </div>
+        {generatedPassword && ( // Show strength indicator only if a password is generated
+          <div className="strength-indicator-wrap">
+            <span>STRENGTH</span>
+            <StrengthIndicator strength={passwordStrength} />
+          </div>
+        )}
 
         <Button
           variant="contained"

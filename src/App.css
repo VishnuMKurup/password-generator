@@ -118,16 +118,34 @@ input[type="range"] {
   margin-right: 5px;
 }
 
-.strength-indicator[data-strength='1'] .strength-block {
-  background-color: #ff5252; /* Red color for weak */
+.strength-icon {
+  display: flex;
+  align-items: center;
 }
 
-.strength-indicator[data-strength='2'] .strength-block {
-  background-color: #ffa500; /* Orange color for strong */
+.strength-icon span {
+  width: 7px;
+  height: 18px;
+  display: inline-block;
+  border: 1px solid #fff;
+  margin-right: 5px;
 }
 
-.strength-indicator[data-strength='3'] .strength-block {
-  background-color: #4caf50; /* Green color for very strong */
+.strength-icon .strength-label {
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+.strength-icon[data-strength='1'] .strength-block:nth-child(-n+2) {
+  background-color: rgb(214, 92, 73); /* Red color for weak */
+}
+
+.strength-icon[data-strength='2'] .strength-block:nth-child(-n+3) {
+  background-color: orange; /* Orange color for medium */
+}
+
+.strength-icon[data-strength='3'] .strength-block {
+  background-color: #4caf50; /* Green color for strong */
 }
 
 .notification-container {
